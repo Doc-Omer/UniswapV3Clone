@@ -19,31 +19,37 @@ contract SingleSwapToken{
     /// @param amountIn The exact amount of DAI that will be swapped for WETH9.
     /// @return amountOut The amount of WETH9 received.
     function swapExactInputString(uint amountIn)external returns(uint amountOut){
-        // msg.sender must approve this contract
-
+        // msg.sender must approve this contract. 
+        //How the swap actually works? First, we have to transfer the funds to Uniswap smart contract and then
+        // we are going to approve the uniswap contract to spend the token on behalf of us. 
+  
         // Transfer the specified amount of DAI to this contract.
-        TransferHelper.safeTransferFrom(WETH9, msg.sender, address(this),value,amountIn);
+        TransferHelper.safeTransferFrom(WETH9, msg.sender, address(this),amountIn);
 
-        // Approve the router to spend DAI.
-        TransferHelper.safeApprove(WETH,address(swapRouter), amountIn);
+        // Approve the router to spend DAI. we are approving the swapRotuer address to spend the token on our behalf 
+        TransferHelper.safeApprove(WETH9,address(swapRouter), amountIn);
 
+        //
         ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
-            tokenIn: WETH9,
-            tokenOut: DAI,
-            fee: 3000,
-            recipient: msg.sender,
-            deadline: block.timestamp,
-            amountIn: amountIn,
-            amountOutMinimun: 0,
-            sqrtPriceLimitx96: 0
+            tokenIn: WETH9,     //The contract address of the inbound token
+            tokenOut: DAI,  //The contract address of the outbound token
+            fee: 3000,      //The fee tier of the pool, used to determine the correct pool contract in which to execute the swap
+            recipient: msg.sender,  //the destination address of the outbound token
+            deadline: block.timestamp,  //the unix time after which a swap will fail, to protect against long-pending transactions and wild swings in prices
+            amountIn: amountIn,     
+            amountOutMinimum: 0,    //we are setting to zero, but this is a significant risk in production. For a real deployment, this value should be calculated using our SDK or an onchain price oracle - this helps protect against getting an unusually bad price for a trade due to a front running sandwich or another type of price manipulation
+            sqrtPriceLimitX96: 0    //We set this to zero - which makes this parameter inactive. In production, this value can be used to set the limit for the price the swap will push the pool to, which can help protect against price impact or for setting up logic in a variety of price-relevant mechanisms.
         });
 
-        amountOut = swapRouter.exactInputSingle(params)
+
+        //calls the function with the above 'params'
+        amountOut = swapRouter.exactInputSingle(params);
     }
-
-    function swapExactInputString(uint amountOut, uint amountInMaximum) external returns(uint amountIn){
+    
+    //Exact output swaps a minimum possible amount of the input token for a fixed amount of the outbound token. 
+    function swapExactOutputString(uint amountOut, uint amountInMaximum) external returns(uint amountIn){
+        
         // Transfer the specified amount of DAI to this contract.
-
         TransferHelper.safeTransferFrom(WETH9, msg.sender, address(this), amountInMaximum);
 
         TransferHelper.safeApprove(WETH9, address(this), amountInMaximum);
@@ -55,11 +61,13 @@ contract SingleSwapToken{
                 recipient: msg.sender,
                 deadline: block.timestamp,
                 amountOut: amountOut,
-                amountOutMaximum: amountOutMaximum,
+                amountInMaximum: amountInMaximum,
                 sqrtPriceLimitX96: 0
             });
+        //calling the function with the params
         amountIn = swapRouter.exactOutputSingle(params);
 
+        //if amountIn is less than the 
         if(amountIn < amountInMaximum){
             TransferHelper.safeApprove(WETH9, address(swapRouter),0);
 
