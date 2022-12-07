@@ -1,3 +1,5 @@
+# Basics Defi:
+
 AMM (Mutomated Market Maker): 
 => https://www.youtube.com/watch?v=1PbZMudPP5E 
 
@@ -25,4 +27,20 @@ https://www.youtube.com/watch?v=DLu35sIqVTM
 
 Uniswap V1, V2, V3 Explained, Concentrated Liqudity, Concentration MUltiplier, Capital Multiplier, Active Liqudity, NFT, Licensing: 
 https://www.youtube.com/watch?v=ClWR1570UQw 
+
+
+
+
+# Uniswap V3 basics topics:
+- concentrated liquidity
+- active liquidity
+- update liquidity limit
+- range limit order
+- multiple price range
+- LP token
+- NFT liquidity
+- flexible fees
+- uniswap oracle
+- swap rollup
+- licensing
 
