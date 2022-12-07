@@ -25,11 +25,11 @@
 
 .NavBar_box_left_menu_item{
     font-size: 1.2rem;
-    color: #cff80b;
+    color: #FFFFFF;
 }
 
 .NavBar_box_middle{
-    background-color: #1e1e1e;
+    background-color: #FFFFFF;
     width: 80%;
     padding: 1rem 1.5rem;
     border-radius: .5rem;
@@ -49,7 +49,7 @@
     outline: none;
     border: none;
     font-size: 1rem;
-    color: #cff80b;
+    color: #5A5A5A;
 }
 
 .NavBar_box_right{
@@ -63,7 +63,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    background-color: #1e1e1e;
+    background-color: #FFFFFF;
     padding: .5rem 1.5rem;
     border-radius: .5rem;
     cursor: pointer;
@@ -73,13 +73,13 @@
 .NavBar_box_right_box p{
     font-size: 1.2rem;
     line-height: 0;
-    color: #cff80b;
+    color: #B2BEB5;
 }
 
 .NavBar_box_right button{
-    background-color: #1e1e1e;
+    background-color: #FFFFFF;
     border: none;
-    outline: #cff80b;
+    outline: #B2BEB5;
     border-radius: .5rem;
     padding: 1.2rem 1.5rem;
     font-size: 1.2rem;
@@ -88,3 +88,11 @@
     align-items: center;
     gap: 1rem;
 }
+
+/* input[type="text"].placehold::-webkit-input-placeholder {
+    color: red;
+  } */
+
+  .placeholderss::placeholder {
+    color: #5A5A5A;
+  }

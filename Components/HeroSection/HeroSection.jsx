@@ -12,14 +12,13 @@ const HeroSection = ({accounts, tokenData}) => {
   const [openToken, setOpenToken] = useState(false);
   const [openTokensTwo, setOpenTokensTwo] = useState(false)
 
-  //Token 1
   const [tokenOne, setTokenOne] = useState ({
-    name: '',
+    name: 'ETH',
     image: '',
   })
 
   const [tokenTwo, setTokenTwo] = useState ({
-    name: '',
+    name: 'ETH',
     image: '',
   }) 
 
@@ -38,8 +37,8 @@ const HeroSection = ({accounts, tokenData}) => {
         <input type="text" placeholder='0'/>
         <button onClick={() => setOpenToken(true) }>
           <Image src={images.image || images.etherlogo} width={20} height={20} alt="ether"/>
-          {tokenOne.name || "ETH"}
-          <small>9474</small>
+          {<small className={Style.symbolClr}>{tokenTwo.name}</small> }
+          <small className={Style.nmbrClr}>9474</small>
         </button>
       </div>
 
@@ -47,12 +46,12 @@ const HeroSection = ({accounts, tokenData}) => {
         <input type="text" placeholder='0'/>
         <button onClick={() => setOpenTokensTwo(true) }>
           <Image src={tokenTwo.image || images.etherlogo} width={20} height={20} alt="ether"/>
-          {tokenTwo.name || "ETH"}
-          <small>9474</small>
+          {<small className={Style.symbolClr}>{tokenTwo.name}</small>}
+          <small className={Style.nmbrClr}>9474</small>
         </button>
       </div>
       {accounts ? (
-        <button className={Style.HeroSection_box_btn}>Connect Wallet</button>
+        <button style={{color: "white"}} className={Style.HeroSection_box_btn}>Connect Wallet</button>
       ):(
         <button className={Style.HeroSection_box_btn} onClick={() => {}}>Swap</button>
       )} 

@@ -56,13 +56,13 @@ const NavBar = () => {
 
         {/* Middle SECTION */}
           <div className={Style.NavBar_box_middle}>
-            <div className={Style.NavBar_box_middle_search}>
-              <div className={Style.NavBar_box_middle_search_img}>
+            <div className={Style.NavBar_box_middle_search}>  
+              <div className={Style.NavBar_box_middle_search_img}>  
                 <Image src={images.search} alt="Search" width={20} height = {20}/>
               </div>
 
               {/* INPUT SECTION  */}
-              <input type="text" placeholder='Search Token'/> 
+              <input  type="text" placeholder='Search Token' className={Style.placeholderss}/> 
             </div>
           </div>
 
@@ -70,18 +70,18 @@ const NavBar = () => {
           <div className={Style.NavBar_box_right}>
             <div className={Style.NavBar_box_right_box}>
               <div className={Style.NavBar_box_right_box_img}>
-                <Image src={images.ether} alt="Network" height={30} width={30}/>
+                <Image src={images.ether}  height={30} width={30}/>
               </div>
-              <p>Network Name</p>
+              <p style={{color:"#5A5A5A"}}>Network</p>
             </div>
             {
               account ? (
                 <button onClick={() => setOpenModel(true)}>Address</button>
               ) : (
-                <button onClick={() => setOpenTokenBox(true)}>0x000000000</button>
+                <button style={{backgroundColor : '#FFFFFF' , color :  '#5A5A5A'}} onClick={() => setOpenTokenBox(true)}>0x000000000</button>
               )
             }
-            <button onClick={() => setOpenModel(true)}>Connect Wallet</button>
+            <button style={{backgroundColor : '#FFFFFF' ,color :  '#5A5A5A'}} onClick={() => setOpenModel(true)}>Connect Wallet</button>
             {openModel && (
               <Model setOpenModel={setOpenModel} connectWallet='Connect ' />
             )}
