@@ -1,3 +1,20 @@
+# Run Project:
+cd to root and run the following commands: 
+`npm install`
+`npm run build`
+`npm start`
+
+
+# folder structure:
+- assets: web design related files
+- Components: frontend code or components
+- contracts: all solidity contracts
+- pages: main page scripts for rendering the pages
+- scripts: scripts for deploy the smart contracts
+- styles: all web design related .css files
+- test: all tset cases are in this folder
+
+
 # Basics Defi:
 
 AMM (Mutomated Market Maker): 
