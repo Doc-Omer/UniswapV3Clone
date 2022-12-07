@@ -23,3 +23,6 @@ Uniswap, Liqudity Pool, Liqudity Provider, Swaping, Uniswap Exchange, Uniswap To
 https://www.youtube.com/watch?v=DLu35sIqVTM 
 
 
+Uniswap V1, V2, V3 Explained, Concentrated Liqudity, Concentration MUltiplier, Capital Multiplier, Active Liqudity, NFT, Licensing: 
+https://www.youtube.com/watch?v=ClWR1570UQw 
+
