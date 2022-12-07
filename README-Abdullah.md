@@ -21,32 +21,32 @@ cd to root and run the following commands:
 # Basics Defi:
 
 AMM (Mutomated Market Maker): 
-<br>=> https://www.youtube.com/watch?v=1PbZMudPP5E 
+<br> https://www.youtube.com/watch?v=1PbZMudPP5E 
 
 
 
 LP (Liqudity Pool), Routing, Liqudity Provider, Price Impact, Arbitrage Traders, Balancer, Liqudity Fee: 
-<br>=> https://www.youtube.com/watch?v=dVJzcFDo498 
+<br> https://www.youtube.com/watch?v=dVJzcFDo498 
 
 
 
 Impermanent Loss: 
-<br>https://www.youtube.com/watch?v=8XJ1MSTEuU0 
-<br>https://www.youtube.com/watch?v=oyriORaeJOw 
+<br> https://www.youtube.com/watch?v=8XJ1MSTEuU0 
+<br> https://www.youtube.com/watch?v=oyriORaeJOw 
 
 
 
 Yield Farming, Borrowing and Lending, Collateral: 
-<br>https://www.youtube.com/watch?v=LaeI5D6NDvw 
+<br> https://www.youtube.com/watch?v=LaeI5D6NDvw 
 
 
 
 Uniswap, Liqudity Pool, Liqudity Provider, Swaping, Uniswap Exchange, Uniswap Token: 
-<br>https://www.youtube.com/watch?v=DLu35sIqVTM 
+<br> https://www.youtube.com/watch?v=DLu35sIqVTM 
 
 
 Uniswap V1, V2, V3 Explained, Concentrated Liqudity, Concentration MUltiplier, Capital Multiplier, Active Liqudity, NFT, Licensing: 
-<br>https://www.youtube.com/watch?v=ClWR1570UQw 
+<br> https://www.youtube.com/watch?v=ClWR1570UQw 
 
 
 
