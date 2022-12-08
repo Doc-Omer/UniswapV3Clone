@@ -52,13 +52,19 @@ Uniswap V1, V2, V3 Explained, Concentrated Liqudity, Concentration MUltiplier, C
 
 
 # Uniswap V3 basics topics:
+- liqudity pool
+- constant product formula (x * y = k)
+- AMM (Automated Market Maker) work as order book work in finance
+- uniswap V1: not support erc20
+- V2: support erc20
+- V3: support custom price range
 - concentrated liquidity
 - active liquidity
 - update liquidity limit
 - range limit order
 - multiple price range
 - LP token
-- NFT liquidity
+- NFT liquidity LP tokens
 - flexible fees
 - uniswap oracle
 - swap rollup
