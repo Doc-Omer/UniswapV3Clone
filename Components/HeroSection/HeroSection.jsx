@@ -5,12 +5,15 @@ import Image from 'next/image';
 import Style from './HeroSection.module.css';
 import images from '../../assets'
 import {Token, SearchToken} from '../index';
+import { SwapTokenContext } from '../../Context/SwapContext';
+
 
 const HeroSection = ({accounts, tokenData}) => {
   //useStates
   const [openSetting, setOpenSetting] = useState(false);
   const [openToken, setOpenToken] = useState(false);
   const [openTokensTwo, setOpenTokensTwo] = useState(false)
+  const { singleSwapToken } = useContext(SwapTokenContext)
 
   //Token 1
   const [tokenOne, setTokenOne] = useState ({

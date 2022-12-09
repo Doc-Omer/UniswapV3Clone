@@ -6,9 +6,11 @@ import Link from 'next/link';
 import Style from './NavBar.module.css';
 import images from '../../assets';
 import {Model, TokenList} from '../index';
+import { SwapTokenContext } from '../../Context/SwapContext';
 
 
 const NavBar = () => {
+  const {connectWallet, ether, account, networkConnect, tokenData} = useContext(SwapTokenContext)
   const menuItems = [
     {
       name: 'Swap',
@@ -27,7 +29,7 @@ const NavBar = () => {
   //USESTATE
   const [openModel, setOpenModel] = useState(false)
   const [openTokenBox, setOpenTokenBox] = useState(false);
-  const [account, setAccount] = useState(false)
+  // const [account, setAccount] = useState(false)
 
 
   return (
@@ -72,18 +74,20 @@ const NavBar = () => {
               <div className={Style.NavBar_box_right_box_img}>
                 <Image src={images.ether} alt="Network" height={30} width={30}/>
               </div>
-              <p>Network Name</p>
+              <p>{networkConnect.name}</p>
             </div>
             {
               account ? (
-                <button onClick={() => setOpenModel(true)}>Address</button>
+                <button onClick={() => setOpenTokenBox(true)}>{account.slice(0,20)}...</button>
+
               ) : (
-                <button onClick={() => setOpenTokenBox(true)}>0x000000000</button>
+                <button onClick={() => setOpenModel(true)}>Address</button>
+
               )
             }
             <button onClick={() => setOpenModel(true)}>Connect Wallet</button>
             {openModel && (
-              <Model setOpenModel={setOpenModel} connectWallet='Connect ' />
+              <Model setOpenModel={setOpenModel} connectWallet={connectWallet} />
             )}
           </div>
 
@@ -91,7 +95,7 @@ const NavBar = () => {
       
               {/* TokenList Component  */}
               {openTokenBox && (
-                <TokenList tokenDate="hey" setOpenTokenBox={setOpenTokenBox} />
+                <TokenList tokenDate={tokenData} setOpenTokenBox={setOpenTokenBox} />
               )}
     </div>
   )

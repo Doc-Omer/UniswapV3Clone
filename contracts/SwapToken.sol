@@ -4,7 +4,6 @@ pragma abicoder v2;
 
 import "@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol";
 import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
-import "./IWETH.sol";
 
 contract SingleSwapToken{
     ISwapRouter public constant swapRouter = ISwapRouter(0xE592427A0AEce92De3Edee1F18E0157C05861564);
@@ -28,8 +27,7 @@ contract SingleSwapToken{
 
         // Approve the router to spend DAI. we are approving the swapRotuer address to spend the token on our behalf 
         TransferHelper.safeApprove(WETH9,address(swapRouter), amountIn);
-        // IWETH(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2).approve(address(0xE592427A0AEce92De3Edee1F18E0157C05861564), amountIn);
-        //
+        
         ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
             tokenIn: WETH9,     //The contract address of the inbound token
             tokenOut: DAI,  //The contract address of the outbound token
@@ -52,6 +50,7 @@ contract SingleSwapToken{
         // Transfer the specified amount of DAI to this contract.
         TransferHelper.safeTransferFrom(WETH9, msg.sender, address(this), amountInMaximum);
         TransferHelper.safeApprove(WETH9, address(this), amountInMaximum);
+        
         ISwapRouter.ExactOutputSingleParams memory params = ISwapRouter.ExactOutputSingleParams({
                 tokenIn: WETH9,
                 tokenOut: DAI,
