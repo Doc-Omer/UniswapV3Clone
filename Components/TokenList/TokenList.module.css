@@ -22,14 +22,14 @@
 .TokenList_close{
     position: absolute;
     right: -1rem;
-    cursor: pointer;
+    /* cursor: pointer; */
     top: -2rem;
     z-index: 1111111111;
 }
 
 .TokenList_box{
     position: relative;
-    cursor: pointer;
+    /* cursor: pointer; */
     border-bottom: 1px solid #d1f80b53;
 }
 

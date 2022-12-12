@@ -17,7 +17,7 @@
 .Toggle_label{
     display: block;
     overflow: hidden;
-    cursor: pointer;
+    /* cursor: pointer; */
     border: 0px solid #bbb;
     border-radius: 20px;
 }

@@ -48,7 +48,7 @@
     width: 5.7rem;
     padding: .3rem;
     border-radius: 1rem;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .active{

@@ -31,7 +31,7 @@
     border-radius: .5rem;
     color: #1e1e1e;
     font-weight: 700;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .Model_box_para{

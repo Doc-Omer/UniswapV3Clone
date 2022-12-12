@@ -32,8 +32,8 @@ export const SwapTokenContextProvider = ({children}) => {
     const [tokenData, setTokendata] = useState([])
 
     const addToken = [
-                      "0xDDa0648FA8c9cD593416EC37089C2a2E6060B45c",
-                      "0xccA9728291bC98ff4F97EF57Be3466227b0eb06C"];
+                      "0xc6B407503dE64956Ad3cF5Ab112cA4f56AA13517",
+                      "0x3a622DB2db50f463dF562Dc5F341545A64C580fc"];
                       //WETH address
                       //Boo address
                       //Life address 
@@ -45,7 +45,7 @@ export const SwapTokenContextProvider = ({children}) => {
             //Get user account
             const userAccount  = await checkIfWalletConnect();
             setAccount(userAccount)
-            
+
             //Create provider
             const web3modal = new Web3Modal();
             const connection = await web3modal.connect();
@@ -54,7 +54,8 @@ export const SwapTokenContextProvider = ({children}) => {
             //check balance
             const balance = await provider.getBalance(userAccount);
             const convertBal = BigNumber.from(balance).toString();
-            const ethValue = ethers.utils.formatEther(convertBal);
+            const ether = ethers.utils.formatEther(convertBal);
+            console.log(ether)
 
             //get network name
             const network = await provider.getNetwork();
@@ -124,23 +125,21 @@ export const SwapTokenContextProvider = ({children}) => {
 
             //SWAP
             await singleSwapToken.swapExactInputSingle(amountIn, {
-                gasLimit: 300000
+                gasLimit: 3000000
             })
 
             const balance = await dai.balanceOf(account);
+            console.log("Balance: ", balance);
             const transferAmount = BigNumber.from(balance).toString();
+            console.log("Transfer amount: ", transferAmount);
             const ethValue = ethers.utils.formatEther(transferAmount)
             setDai(ethValue);
             console.log("Dai Balance: ", ethValue);
-             
+
         } catch (error) {
             console.log(error);
         }
     }
-
-    
-
-
 
     return <SwapTokenContext.Provider value={{singleSwapToken, connectWallet, account, weth9, dai, networkConnect, ether, tokenData}}>
         {children}

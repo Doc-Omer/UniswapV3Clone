@@ -41,7 +41,7 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .NavBar_box_middle input{
@@ -66,7 +66,7 @@
     background-color: #1e1e1e;
     padding: .5rem 1.5rem;
     border-radius: .5rem;
-    cursor: pointer;
+    /* cursor: pointer; */
     text-transform: capitalize;
 }
 
@@ -83,7 +83,7 @@
     border-radius: .5rem;
     padding: 1.2rem 1.5rem;
     font-size: 1.2rem;
-    cursor: pointer;
+    /* cursor: pointer; */
     display: flex;
     align-items: center;
     gap: 1rem;

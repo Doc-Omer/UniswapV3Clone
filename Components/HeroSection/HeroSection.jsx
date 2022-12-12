@@ -5,15 +5,15 @@ import Image from 'next/image';
 import Style from './HeroSection.module.css';
 import images from '../../assets'
 import {Token, SearchToken} from '../index';
-import { SwapTokenContext } from '../../Context/SwapContext';
+import { SwapTokenContext, connectWallet, account, ether } from '../../Context/SwapContext';
 
 
-const HeroSection = ({accounts, tokenData}) => {
+const HeroSection = ({tokenData}) => {
   //useStates
   const [openSetting, setOpenSetting] = useState(false);
   const [openToken, setOpenToken] = useState(false);
   const [openTokensTwo, setOpenTokensTwo] = useState(false)
-  const { singleSwapToken } = useContext(SwapTokenContext)
+  const { singleSwapToken, connectWallet, account, ether, dai } = useContext(SwapTokenContext)
 
   //Token 1
   const [tokenOne, setTokenOne] = useState ({
@@ -42,7 +42,7 @@ const HeroSection = ({accounts, tokenData}) => {
         <button onClick={() => setOpenToken(true) }>
           <Image src={images.image || images.etherlogo} width={20} height={20} alt="ether"/>
           {tokenOne.name || "ETH"}
-          <small>9474</small>
+          <small>{ether.slice(0,7)}</small>
         </button>
       </div>
 
@@ -51,13 +51,13 @@ const HeroSection = ({accounts, tokenData}) => {
         <button onClick={() => setOpenTokensTwo(true) }>
           <Image src={tokenTwo.image || images.etherlogo} width={20} height={20} alt="ether"/>
           {tokenTwo.name || "ETH"}
-          <small>9474</small>
+          <small>{dai.slice(0,7)}</small>
         </button>
       </div>
-      {accounts ? (
-        <button className={Style.HeroSection_box_btn}>Connect Wallet</button>
+      {account ? (
+        <button className={Style.HeroSection_box_btn} onClick={() => singleSwapToken()}>Swap</button>
       ):(
-        <button className={Style.HeroSection_box_btn} onClick={() => {}}>Swap</button>
+        <button onClick={() => connectWallet()} className={Style.HeroSection_box_btn}>Connect Wallet</button>
       )} 
     </div>
     {openSetting && <Token setOpenSetting={setOpenSetting}/>}

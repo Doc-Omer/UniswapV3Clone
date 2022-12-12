@@ -39,7 +39,7 @@
     border-radius: .5rem;
     font-size: 900;
     font-size: 1rem;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .Token_box_input input{
