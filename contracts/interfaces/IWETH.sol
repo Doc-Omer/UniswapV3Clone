@@ -1,30 +1,30 @@
-//SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
-pragma abicoder v2;
+// SPDX-License-Identifier: GPL-2.0-or-later
+pragma solidity >=0.7.0 <0.9.0;
 
-import "@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol";
-import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
-
-
-interface IWETH{
-
+interface IWETH {
     function deposit() external payable;
 
-    function withdraw(uint wed) external;
+    function withdraw(uint) external;
 
-    function totalSupply() external view returns(uint);
+    function totalSupply() external view returns (uint);
 
-    function balanceOf(address account) external view returns(uint);
+    function balanceOf(address account) external view returns (uint);
 
-    function transfer(address recipient, uint amount) external returns(bool);
+    function transfer(address recipient, uint amount) external returns (bool);
 
-    function allowance(address owner, address spender) external view returns(uint);
+    function allowance(address owner, address spender)
+        external
+        view
+        returns (uint);
 
-    function approve(address spender, uint amount) external returns(bool);
+    function approve(address spender, uint amount) external returns (bool);
 
-    function transferFrom(address sender, address recipient, uint amount) external returns(bool);
+    function transferFrom(
+        address sender,
+        address recipient,
+        uint amount
+    ) external returns (bool);
 
     event Transfer(address indexed from, address indexed to, uint value);
-
-    event Approve(address indexed owner, address indexed spender, uint value);
+    event Approval(address indexed owner, address indexed spender, uint value);
 }
