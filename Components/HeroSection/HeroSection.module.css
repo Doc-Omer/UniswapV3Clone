@@ -11,7 +11,7 @@
     margin-top: 5rem;
     background-color: #FFFF;
     padding: 1rem;
-    border-radius: .5rem;
+    border-radius: 1.0rem;
     width: 30rem;
 }
 
@@ -26,7 +26,7 @@
     align-items: center;
     justify-content: space-between;
     border: 2px solid #0e2433;
-    border-radius: .5rem;
+    border-radius: 5rem;
     padding-left: 2rem;
     margin-top: 1rem;
 }
@@ -49,7 +49,7 @@
     padding: 1rem;
     font-weight: 700;
     font-size: 1.2rem;
-    border-radius: .5rem;
+    border-radius: 5rem;
 }
 
 .HeroSection_box_btn{

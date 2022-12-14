@@ -4,21 +4,28 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "webpack --config webpack.config.js",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@nomicfoundation/solidity-analyzer": "^0.1.0",
+    "@nomicfoundation/solidity-analyzer-linux-x64-musl": "^0.1.0",
     "@openzeppelin/contracts": "^4.8.0",
     "@uniswap/v3-periphery": "^1.4.3",
-    "ether": "^0.0.9",
+    "babel-preset-es2015": "^6.24.1",
+    "ethers": "^5.7.2",
     "next": "13.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "web3modal": "^1.9.10"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
-    "hardhat": "^2.12.3"
+    "hardhat": "^2.12.3",
+    "webpack": "^5.0.0-rc.6",
+    "webpack-cli": "^5.0.1"
   }
 }

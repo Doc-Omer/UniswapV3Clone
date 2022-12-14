@@ -1,12 +1,12 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity >=0.7.0 < 0.9.0;
 pragma abicoder v2;
 
 import "@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol";
 import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
 
 
-contract SingleSwapToken{
+contract SingleSwap{
     ISwapRouter public constant swapRouter = ISwapRouter(0xE592427A0AEce92De3Edee1F18E0157C05861564);
 
     address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
@@ -18,7 +18,7 @@ contract SingleSwapToken{
     /// @dev The calling address must approve this contract to spend at least `amountIn` worth of its DAI for this function to succeed.
     /// @param amountIn The exact amount of DAI that will be swapped for WETH9.
     /// @return amountOut The amount of WETH9 received.
-    function swapExactInputString(uint amountIn)external returns(uint amountOut){
+    function swapExactInputSingle(uint amountIn)external returns(uint amountOut){
         // msg.sender must approve this contract. 
         //How the swap actually works? First, we have to transfer the funds to Uniswap smart contract and then
         // we are going to approve the uniswap contract to spend the token on behalf of us. 
@@ -47,7 +47,7 @@ contract SingleSwapToken{
     }
     
     //Exact output swaps a minimum possible amount of the input token for a fixed amount of the outbound token. 
-    function swapExactOutputString(uint amountOut, uint amountInMaximum) external returns(uint amountIn){
+    function swapExactOutputSingle(uint amountOut, uint amountInMaximum) external returns(uint amountIn){
         
         // Transfer the specified amount of DAI to this contract.
         TransferHelper.safeTransferFrom(WETH9, msg.sender, address(this), amountInMaximum);

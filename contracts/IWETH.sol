@@ -6,7 +6,7 @@ import "@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol";
 import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
 
 
-interface IETH{
+interface IWETH{
 
     function deposit() external payable;
 
