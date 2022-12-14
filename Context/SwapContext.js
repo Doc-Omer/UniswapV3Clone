@@ -15,7 +15,6 @@ import {
 } from '../Utils/appFeatures';
 
 import { IWETHAbi } from './constants';
-// import { }
 import ERC20 from './ERC20.json'
 
 export const SwapTokenContext = React.createContext();
@@ -32,9 +31,9 @@ export const SwapTokenContextProvider = ({children}) => {
     const [tokenData, setTokendata] = useState([])
 
     const addToken = [
-                      "0xc6B407503dE64956Ad3cF5Ab112cA4f56AA13517",
-                      "0x3a622DB2db50f463dF562Dc5F341545A64C580fc"];
-                      //WETH address
+                      "0x6A47346e722937B60Df7a1149168c0E76DD6520f",
+                      "0x7A28cf37763279F774916b85b5ef8b64AB421f79"];
+                      
                       //Boo address
                       //Life address 
 
@@ -44,6 +43,8 @@ export const SwapTokenContextProvider = ({children}) => {
         try {
             //Get user account
             const userAccount  = await checkIfWalletConnect();
+            console.log("userAccount in SwapContext: ", userAccount);
+            
             setAccount(userAccount)
 
             //Create provider
@@ -51,8 +52,11 @@ export const SwapTokenContextProvider = ({children}) => {
             const connection = await web3modal.connect();
             const provider = new ethers.providers.Web3Provider(connection);
 
+        
+
             //check balance
             const balance = await provider.getBalance(userAccount);
+            
             const convertBal = BigNumber.from(balance).toString();
             const ether = ethers.utils.formatEther(convertBal);
             console.log(ether)
@@ -103,12 +107,14 @@ export const SwapTokenContextProvider = ({children}) => {
         }
     }
  
-    useEffect(()=>{
-        fetchingData();
-    }, []);
+        useEffect(()=>{
+            fetchingData();
+        }, []);
 
     //Single Swap Token
-    const singleSwapToken = async() => {
+    const singleSwapToken = async(firstValue = "1", secondValue = "2") => {
+
+        console.log(firstValue, secondValue)
         try {
             let singleSwapToken
             let weth
@@ -118,8 +124,8 @@ export const SwapTokenContextProvider = ({children}) => {
             weth = await connectingWithIWETH();
             dai = await connectingWithDAI();
 
-            const amountIn = 10n **18n;
-
+            const amountIn = firstValue;
+ 
             await weth.deposit({value: amountIn})
             await weth.approve(singleSwapToken.address, amountIn);
 
@@ -128,18 +134,19 @@ export const SwapTokenContextProvider = ({children}) => {
                 gasLimit: 3000000
             })
 
-            const balance = await dai.balanceOf(account);
-            console.log("Balance: ", balance);
-            const transferAmount = BigNumber.from(balance).toString();
+            const daiBalance = await dai.balanceOf(account);
+            console.log("daiBalance: ", daiBalance);
+            const transferAmount = BigNumber.from(daiBalance).toString();
             console.log("Transfer amount: ", transferAmount);
             const ethValue = ethers.utils.formatEther(transferAmount)
             setDai(ethValue);
             console.log("Dai Balance: ", ethValue);
-
+            console.log("ETH balance:", balance);
         } catch (error) {
             console.log(error);
         }
     }
+    
 
     return <SwapTokenContext.Provider value={{singleSwapToken, connectWallet, account, weth9, dai, networkConnect, ether, tokenData}}>
         {children}
