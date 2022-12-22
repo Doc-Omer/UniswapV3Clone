@@ -8,38 +8,68 @@ import { Token, SearchToken } from "../index";
 
 //CONTEXT
 import { SwapTokenContext } from "../../Context/SwapContext";
-import {connectingWithIWETH} from '../../Utils/appFeatures';
 
-const HeroSection = ({ tokenData }) => {
+const HeroSection = ({}) => {
   //USESTATE
   const [openSetting, setOpenSetting] = useState(false);
   const [openToken, setOpenToken] = useState(false);
   const [openTokensTwo, setOpenTokensTwo] = useState(false);
-  const [firstValue, setFirstValue] = useState("");
-  const [secondValue, setSecondValue] = useState("")
 
-  // useEffect(()=>{
-  //   const getBlance = async() => {
-  //     const weth = await connectingWithIWETH();
-  //     console.log(weth.getBalance())
-  //   }
+  const [tokenSwapOutPut, setTokenSwapOutPut] = useState(0);
+  const [poolMessage, setPoolMessage] = useState("");
+  const [search, setSearch] = useState(false);
+  const [search1, setSearch1] = useState(false);
+  const [swapAmount, setSwapAmount] = useState(0);
 
-  //   getBlance()
-  // },[])
-
-  const { singleSwapToken, connectWallet, account, ether, dai } =
-    useContext(SwapTokenContext);
+  const {
+    singleSwapToken,
+    connectWallet,
+    account,
+    ether,
+    dai,
+    tokenData,
+    swapUpdatePrice,
+    getPrice,
+    createLiqudityAndPool,
+  } = useContext(SwapTokenContext);
 
   //TOKEN 1
   const [tokenOne, setTokenOne] = useState({
     name: "",
     image: "",
+    symbol: "",
+    tokenBalance: "",
+    tokenAddress: "",
   });
+
   //TOKEN 2
   const [tokenTwo, setTokenTwo] = useState({
     name: "",
     image: "",
+    symbol: "",
+    tokenBalance: "",
+    tokenAddress: "",
   });
+
+  const callOutPut = async (value) => {
+    const yourAccount = "0x97f991971a37D4Ca58064e6a98FC563F03A71E5c";
+    const deadline = 10;
+    const slippageAmount = 25;
+    const data = await swapUpdatePrice(
+      value,
+      slippageAmount,
+      deadline,
+      yourAccount
+    );
+    setTokenSwapOutPut(data[1]);
+    setSearch(false);
+    //QUOTE
+    const poolAddress = "0xc2e9f25be6257c210d7adf0d4cd6e3e881ba25f8";
+    const poolData = await getPrice(value, poolAddress);
+    const message = `${value} ${poolData[2]} = ${poolData[0]} ${poolData[1]}`;
+    setPoolMessage(message);
+    setSearch1(false);
+  };
   //JSX
   return (
     <div className={Style.HeroSection}>
@@ -58,7 +88,16 @@ const HeroSection = ({ tokenData }) => {
         </div>
 
         <div className={Style.HeroSection_box_input}>
-          <input type="text" placeholder="0" onChange={e => setFirstValue(e.target.value)} />
+          <input
+            type="number"
+            placeholder={0}
+            onChange={(e) => (
+              callOutPut(e.target.value),
+              setSwapAmount(e.target.value),
+              setSearch(true),
+              setSearch1(true)
+            )}
+          />
           <button onClick={() => setOpenToken(true)}>
             <Image
               src={images.image || images.etherlogo}
@@ -66,13 +105,26 @@ const HeroSection = ({ tokenData }) => {
               height={20}
               alt="ether"
             />
-            {tokenOne.name || "ETH"}
-            <small>{ether.slice(0, 7)}</small>
+            {tokenOne.symbol || "ETH"}
+
+            <small>{tokenOne.tokenBalance.slice(0, 7)}</small>
           </button>
         </div>
 
         <div className={Style.HeroSection_box_input}>
-          <input type="text" placeholder="0" onChange={e=>setSecondValue(e.target.value)}/>
+          <p>
+            {search ? (
+              <Image
+                src={images.loading}
+                width={40}
+                height={20}
+                alt="loading"
+              />
+            ) : (
+              tokenSwapOutPut
+            )}
+          </p>
+
           <button onClick={() => setOpenTokensTwo(true)}>
             <Image
               src={tokenTwo.image || images.etherlogo}
@@ -80,24 +132,38 @@ const HeroSection = ({ tokenData }) => {
               height={20}
               alt="ether"
             />
-            {tokenTwo.name || "ETH"}
-            <small>{dai.slice(0, 7)}</small>
+            {tokenTwo.symbol || "Select"}
+            <small>{tokenTwo.tokenBalance.slice(0, 7)}</small>
           </button>
         </div>
-
+        {search1 ? (
+          <div className={Style.HeroSection_box_price}>
+            <Image src={images.loading} width={40} height={20} alt="loading" />
+          </div>
+        ) : (
+          <div className={Style.HeroSection_box_price}>
+            <p>{poolMessage}</p>
+          </div>
+        )}
         {account ? (
           <button
             className={Style.HeroSection_box_btn}
-            onClick={() => singleSwapToken(firstValue, secondValue)}
+            onClick={() =>
+              singleSwapToken({
+                token1: tokenOne,
+                token2: tokenTwo,
+                swapAmount,
+              })
+            }
           >
-            Swap
+            Connect Wallet
           </button>
         ) : (
           <button
             onClick={() => connectWallet()}
             className={Style.HeroSection_box_btn}
           >
-            Connect Wallet
+            Swap
           </button>
         )}
       </div>
