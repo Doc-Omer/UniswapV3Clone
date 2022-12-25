@@ -68,6 +68,11 @@ async function main() {
   );
   nftDescriptor = await NFTDescriptor.deploy();
 
+  // console.log("Swap Router: ", swapRouter.address)
+  // console.log("NFTDescriptor: ", nftDescriptor.address);
+  // console.log("Factoty", factory.address)
+  // console.log("Weth", weth.address);
+
   const linkedBytecode = linkLibraries(
     {
       bytecode: artifacts.NonfungibleTokenPositionDescriptor.bytecode,
@@ -87,45 +92,48 @@ async function main() {
     }
   );
 
-  console.log("linkedBytecode====================", `${linkedBytecode}`);
+  // console.log(linkedBytecode)
+
+  //   console.log("linkedBytecode====================", NFTDescriptor);
   NonfungibleTokenPositionDescriptor = new ContractFactory(
     artifacts.NonfungibleTokenPositionDescriptor.abi,
-    `"${linkedBytecode}"`,
+    artifacts.NonfungibleTokenPositionDescriptor.bytecode,
     owner
   );
-  console.log("95-----------------");
-  nonfungibleTokenPositionDescriptor =
-    await NonfungibleTokenPositionDescriptor.deploy(weth.address);
+  console.log(NonfungibleTokenPositionDescriptor);
+  //   console.log("95-----------------");
+  //   nonfungibleTokenPositionDescriptor =
+  //     await NonfungibleTokenPositionDescriptor.deploy(weth.address);
 
-  console.log(nonfungibleTokenPositionDescriptor);
-  NonfungiblePositionManager = new ContractFactory(
-    artifacts.NonfungiblePositionManager.abi,
-    artifacts.NonfungiblePositionManager.bytecode,
-    owner
-  );
-  nonfungiblePositionManager = await NonfungiblePositionManager.deploy(
-    factory.address,
-    weth.address,
-    nonfungibleTokenPositionDescriptor.address
-  );
+  //   console.log(nonfungibleTokenPositionDescriptor);
+  //   NonfungiblePositionManager = new ContractFactory(
+  //     artifacts.NonfungiblePositionManager.abi,
+  //     artifacts.NonfungiblePositionManager.bytecode,
+  //     owner
+  //   );
+  //   nonfungiblePositionManager = await NonfungiblePositionManager.deploy(
+  //     factory.address,
+  //     weth.address,
+  //     nonfungibleTokenPositionDescriptor.address
+  //   );
 
-  console.log("wethAddress=", `'${weth.address}'`);
-  console.log("factoryAddress=", `'${factory.address}'`);
-  console.log("swapRouterAddress=", `'${swapRouter.address}'`);
-  console.log("nftDescriptorAddress=", `'${nftDescriptor.address}'`);
-  // console.log(
-  //   "positionDescriptorAddress=",
-  //   `'${nonfungibleTokenPositionDescriptor.address}'`
-  // );
-  // console.log(
-  //   "positionManagerAddress=",
-  //   `'${nonfungiblePositionManager.address}'`
-  // );
+  //   console.log("wethAddress=", `'${weth.address}'`);
+  //   console.log("factoryAddress=", `'${factory.address}'`);
+  //   console.log("swapRouterAddress=", `'${swapRouter.address}'`);
+  //   console.log("nftDescriptorAddress=", `'${nftDescriptor.address}'`);
+  //   // console.log(
+  //   //   "positionDescriptorAddress=",
+  //   //   `'${nonfungibleTokenPositionDescriptor.address}'`
+  //   // );
+  //   // console.log(
+  //   //   "positionManagerAddress=",
+  //   //   `'${nonfungiblePositionManager.address}'`
+  //   // );
 }
 
-/*
-npx hardhat run --network localhost scripts/uniswapContract.js
-*/
+// /*
+// npx hardhat run --network localhost scripts/uniswapContract.js
+// */
 
 main()
   .then(() => process.exit(0))
