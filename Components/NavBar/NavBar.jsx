@@ -81,7 +81,7 @@ const NavBar = () => {
                 <button style={{backgroundColor : '#FFFFFF' , color :  '#5A5A5A'}} onClick={() => setOpenTokenBox(true)}>0x000000000</button>
               )
             }
-            <button style={{backgroundColor : '#FFFFFF' ,color :  '#5A5A5A'}} onClick={() => setOpenModel(true)}>Connect Wallet</button>
+            <button style={{backgroundColor : '#FFFFFF' ,color :  '#5A5A5A'}} onClick={() => setOpenModel(true)}>Connect</button>
             {openModel && (
               <Model setOpenModel={setOpenModel} connectWallet='Connect ' />
             )}

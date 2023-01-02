@@ -45,7 +45,8 @@ const SearchToken = ({openToken, tokens, tokenData}) => {
         </div>
         <div className={Style.SearchToken_box_tokens}>
           {coin.map((el,i)=> (
-            <span key={i+1} className={active == i+1 ? `${Style.active}`: "'"} onClick={() => (setActive(i+1), tokens({name: el.name, image: el.img}))}>
+            <span key={i+1} className={active == i+1 ? `${Style.active}`: "'"} 
+            onClick={() => (setActive(i+1), tokens({name: el.name, image: el.img}))}>
               <Image src={el.img || images.ether} alt="image" width={30} height={30}/>{el.name}
             </span>
           ))}

@@ -1,14 +1,16 @@
-import '../styles/globals.css'
-import TokenList from  '../Components/TokenList/TokenList'
+import "../styles/globals.css";
 
-//internal Import
-import {NavBar} from '../Components/index';
+//INTERNAL IMPORT
+import { NavBar } from "../Components/index";
+import { SwapTokenContextProvider } from "../Context/SwapContext";
 
 const MyApp = ({ Component, pageProps }) => (
   <div>
-    <NavBar/>
-    <Component {...pageProps} />
+    <SwapTokenContextProvider>
+      <NavBar />
+      <Component {...pageProps} />
+    </SwapTokenContextProvider>
   </div>
 );
 
-export default MyApp
+export default MyApp;

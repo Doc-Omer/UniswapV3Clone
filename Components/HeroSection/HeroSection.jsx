@@ -51,7 +51,7 @@ const HeroSection = ({accounts, tokenData}) => {
         </button>
       </div>
       {accounts ? (
-        <button style={{color: "white"}} className={Style.HeroSection_box_btn}>Connect Wallet</button>
+        <button style={{color: "white"}} className={Style.HeroSection_box_btn}>Connect</button>
       ):(
         <button className={Style.HeroSection_box_btn} onClick={() => {}}>Swap</button>
       )} 

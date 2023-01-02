@@ -1,18 +1,44 @@
 
+// npx hardhat run scripts/deploy.js --network localhost
+
+
 const hre = require("hardhat");
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
+  // ERC20 BOO TOKEN
+  const FooToken = await hre.ethers.getContractFactory("FooToken");
+  const fooToken = await FooToken.deploy();
+  await fooToken.deployed();
+  console.log(`export const FooTokenAddress = "${fooToken.address}";`);
 
-  const lockedAmount = hre.ethers.utils.parseEther("1");
+  // ERC20 LIFE TOKEN
+  const BarToken = await hre.ethers.getContractFactory("BarToken");
+  const barToken = await BarToken.deploy();
+  await barToken.deployed();
+  console.log(`export const BarTokenAddress = "${barToken.address}";`);
 
-  const Lock = await hre.ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy();
 
-  await lock.deployed();
+  //SingleSwapToken
+  const SingleSwapToken = await hre.ethers.getContractFactory(
+    "SingleSwapToken"
+  );
+  const singleSwapToken = await SingleSwapToken.deploy();
+  await singleSwapToken.deployed();
+  console.log(`export const SingleSwapTokenAddress = "${singleSwapToken.address}";`);
 
+  //SwapMultiHope
+  const SwapMultiHope = await hre.ethers.getContractFactory("SwapMultiHope");
+  const swapMultiHope = await SwapMultiHope.deploy();
+  await swapMultiHope.deployed();
+  console.log(`export const SwapMultiHopeAddress = "${swapMultiHope.address}";`);
+
+  // //USER DATA CONTRACT
+  // const UserStorageData = await hre.ethers.getContractFactory(
+  //   "UserStorageData"
+  // );
+  // const userStorageData = await UserStorageData.deploy();
+  // await userStorageData.deployed();
+  // console.log(`UserStorageData deployed to ${userStorageData.address}`);
 
 }
 
